@@ -2,7 +2,6 @@ package cz.scholz.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.Serializer;
 
 import java.util.Map;
 

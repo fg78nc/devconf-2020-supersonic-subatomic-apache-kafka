@@ -11,7 +11,7 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 public class ConsumerAPI {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Properties props = new Properties();
         props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9093");
         props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
