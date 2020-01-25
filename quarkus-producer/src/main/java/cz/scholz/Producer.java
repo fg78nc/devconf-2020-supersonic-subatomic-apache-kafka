@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 @ApplicationScoped
 public class Producer {
     @Outgoing("produced")
-    public Flowable<KafkaMessage<String, MyTime>> generateMessages() {
+    public Flowable<KafkaMessage<String, String>> generateMessages() {
         return Flowable.interval(1, TimeUnit.SECONDS)
-                .map(tick -> KafkaMessage.of("key", MyTime.create(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()))));
+                .map(tick -> KafkaMessage.of("key", "{\"time\":\"" + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()) + "\"}"));
     }
 }

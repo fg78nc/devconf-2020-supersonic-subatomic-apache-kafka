@@ -4,7 +4,6 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.config.SslConfigs;
-import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
 import java.util.Properties;
@@ -24,13 +23,13 @@ public class ConsumerAPI {
         props.put("security.protocol", "SSL");
         props.put(SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, "HTTPS");
 
-        KafkaConsumer<String, MyTime> consumer = new KafkaConsumer<String, MyTime>(props, new StringDeserializer(), new MyTimeDeserializer());
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
         consumer.subscribe(Pattern.compile("my-topic"));
 
         int i = 0;
 
         while (i < 100)    {
-            ConsumerRecords<String, MyTime> records = consumer.poll(Duration.ofSeconds(5));
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(5));
 
             if (records.isEmpty()) {
                 System.out.println("No messages received ... exiting!");
