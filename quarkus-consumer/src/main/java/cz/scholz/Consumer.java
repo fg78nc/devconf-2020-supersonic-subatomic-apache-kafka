@@ -13,7 +13,7 @@ public class Consumer {
     private static final Logger LOG = LoggerFactory.getLogger(Consumer.class.getName());
 
     @Incoming("consumed")
-    public CompletionStage<Void> consume(KafkaMessage<String, String> msg) {
+    public CompletionStage<Void> consume(KafkaMessage<String, MyTime> msg) {
         LOG.info("Received message (topic: {}, partition: {}) with key {}: {}", msg.getTopic(), msg.getPartition(), msg.getKey(), msg.getPayload());
         return msg.ack();
     }
